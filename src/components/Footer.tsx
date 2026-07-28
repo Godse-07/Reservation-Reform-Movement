@@ -1,19 +1,7 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { Scale, ArrowUp, Send, ShieldCheck, Heart, BookOpen, Instagram } from 'lucide-react';
+import React from 'react';
+import { Scale, ArrowUp, Send, ShieldCheck, Instagram } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail('');
-    }
-  };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -39,35 +27,6 @@ export const Footer: React.FC = () => {
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
               Advocating for peaceful, evidence-based review, periodic statutory audits, and balanced opportunity under the Constitution of India.
             </p>
-
-            {/* Newsletter */}
-            <div className="pt-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-amber-400 block mb-2">
-                Subscribe to Research Updates
-              </span>
-              {subscribed ? (
-                <div className="p-2.5 rounded-xl bg-emerald-950/80 border border-emerald-800 text-emerald-300 text-xs font-medium">
-                  Thank you for subscribing to our research dispatch!
-                </div>
-              ) : (
-                <form onSubmit={handleSubscribe} className="flex items-center gap-2 max-w-sm">
-                  <input
-                    type="email"
-                    required
-                    placeholder="Enter your email address..."
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
-                  />
-                  <button
-                    type="submit"
-                    className="px-4 py-2 text-xs font-bold rounded-xl bg-amber-500 text-slate-950 hover:bg-amber-400 transition-colors shrink-0 cursor-pointer"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-              )}
-            </div>
           </div>
 
           {/* Quick Nav Links */}
@@ -99,15 +58,6 @@ export const Footer: React.FC = () => {
 
           {/* Contact & Legal */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">
-              Contact & Socials
-            </h4>
-            <p className="text-xs text-slate-400 leading-relaxed mb-3">
-              Public Interest Queries:
-              <br />
-              <strong className="text-slate-200 font-mono">contact@reservationreform.org</strong>
-            </p>
-
             <div className="pt-1 mb-3">
               <span className="text-[11px] font-semibold text-slate-400 block mb-2">Follow Movement:</span>
               <a
