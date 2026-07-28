@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 import { PledgeRecord, JoinFormData } from "../types";
 
 const STORAGE_KEY_USER_PLEDGE = "PRM_USER_PLEDGE";
@@ -118,7 +120,9 @@ export async function submitPledgeToSheets(pledgeRecord: {
 }> {
   const response = await fetch("/api/pledges", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       fullName: pledgeRecord.data.fullName,
       email: pledgeRecord.data.email,
@@ -129,15 +133,16 @@ export async function submitPledgeToSheets(pledgeRecord: {
     }),
   });
 
-  const data = await response.json().catch(() => ({}));
-  if (!response.ok || data?.success === false) {
+  const data = await response.json();
+
+  if (!response.ok || (data as any)?.success === false) {
     throw new Error(
-      data?.error ||
+      (data as any)?.error ||
         `Failed to write pledge to Google Sheets (${response.status}).`,
     );
   }
 
-  return data;
+  return data as any;
 }
 
 /**
@@ -167,8 +172,13 @@ export async function lookupPledgeByEmailAndRef(
   try {
     const response = await fetch("/api/pledges/verify", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email.trim(), refId: refId.trim() }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email.trim(),
+        refId: refId.trim(),
+      }),
     });
     if (response.ok) {
       const data = await response.json();
