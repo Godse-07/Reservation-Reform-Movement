@@ -1,0 +1,6 @@
+{
+  "name": "Reservation Policy Reform Movement",
+  "description": "A constitutional, research-backed public interest platform advocating peaceful review, balanced opportunity, and evidence-based policy reform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
